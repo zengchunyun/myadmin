@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% load crm_list %}
+{% block contener-body %}
+    <ol class="col-sm-7 col-sm-offset-2 col-md-10 col-md-offset-2 main breadcrumb" >
+      <li><a href="/">Home</a></li>
+      <li class="active">Data</li>
+    </ol>
+    <div class="col-sm-11 col-sm-offset-1 col-md-11 col-md-offset-1 main">
+        <h1 class="page-header"><span class="glyphicon glyphicon-dashboard"></span> {{ table_name }} Management</h1>
+        <div class="row">
+            <div class="col-xs-8 col-sm-8">
+                <div class="btn-group" data-toggle="buttons">
+                    <button action="select-all" class="btn btn-primary" type="button" ><span class="glyphicon glyphicon-check"></span> 全选</button>
+                    <button action="reverse-all" class="btn btn-primary" type="button"><span class="glyphicon glyphicon-retweet"></span> 反选</button>
+                    <button action="unselect-all" class="btn btn-primary" type="button"><span class="glyphicon glyphicon-ban-circle"></span> 取消</button>
+                    <a action="add-col" href="/student/admin/{{ table_name }}/add/" class="btn btn-primary" type="button" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span> 添加</a>
+                    <button action="del-col" class="btn btn-primary" type="button"><span class="glyphicon glyphicon-trash"></span> 删除</button>
+                    <button action="each-mo" class="btn btn-primary" type="button"><span class="glyphicon glyphicon-edit"></span> 批量修改</button>
+                    <button action="each-edit" class="btn btn-primary" type="button"><span class="glyphicon glyphicon-pencil"></span> 编辑模式</button>
+                </div>
+            </div>
+            <div class="col-xs-2 col-md-2 bg-danger invisible" id="show-ret">{{ error_message }}</div>
+            <div class="col-xs-2">
+                <div class="actions btn-group">
+                    <div class="dropdown btn-group">
+                        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                            <span class="dropdown-text">10</span>
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu pull-right" role="menu">
+                            <li class="" aria-selected="false">
+                                <a data-action="-1" class="dropdown-item dropdown-item-button">All</a>
+                            </li>
+                            <li aria-selected="true" class="active">
+                                <a data-action="10" class="dropdown-item dropdown-item-button">10</a>
+                            </li>
+                            <li aria-selected="false">
+                                <a data-action="50" class="dropdown-item dropdown-item-button">50</a>
+                            </li>
+                            <li aria-selected="false">
+                                <a data-action="75" class="dropdown-item dropdown-item-button">75</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="dropdown btn-group">
+                        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                            <span class="dropdown-text">
+                                <span class="icon fa fa-th-list"></span>
+                            </span>
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu pull-right" role="menu">
+                            {% for checkitem in field_obj_list %}
+                                {% if checkitem.verbose_name %}
+                                    <li>
+                                        <label class="dropdown-item">
+                                            <input name="showHost" type="checkbox" value="1" class="dropdown-item-checkbox" checked="checked"> {{ checkitem.verbose_name }}</label>
+                                    </li>
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <form method="post" action="">
+            <table class="table" id="show-data-info">
+                <thead>
+                    <tr>
+                        <th>选择</th>
+                        {% for field in field_obj_list %}
+                            {% if field.verbose_name %}
+                                <th>{{ field.verbose_name }}</th>
+                            {% endif %}
+                        {% endfor %}
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for field_data in model_data %}
+                    <tr>
+                        <td><input type="checkbox" value="{{ field_data.id }}" check="true" ></td>
+                        {% render_data field_data fields %}
+                        <td>
+                            <span>
+                                <div class="btn-group" data-toggle="buttons">
+                                    <button class="btn btn-primary" type="button" action="one-row-edit"><span class="glyphicon glyphicon-pencil"></span> 编辑</button>
+                                </div>
+                            </span>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </form>
+    </div>
+{% endblock %}

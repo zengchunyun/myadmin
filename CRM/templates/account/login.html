@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="icon" href="/static/img/favicon.ico">
+        <title>登录</title>
+        <link href="/static/plugins/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet">
+        <link href="/static/css/signin.css" rel="stylesheet">
+    </head>
+
+    <body>
+        <div class="container">
+            <form class="form-signin" action="/accounts/login/" method="post">{% csrf_token %}
+                <h2 class="form-signin-heading">请 登 录</h2>
+                <span class="bg-danger" style="color: red">{% if login_err %}{{ login_err }}{% endif %}</span>
+                <div class="form-group">
+                    <label for="id_username" class="sr-only">用户名</label>
+                    {{ login_obj.username }} <span class="bg-danger">{{ login_obj.username.errors.as_text }}</span>
+                </div>
+                <div class="form-group">
+                    <label for="id_password" class="sr-only">密码</label>
+                    {{ login_obj.password }} <span class="bg-danger">{{ login_obj.password.errors.as_text }}</span>
+                </div>
+                <div class="checkbox">
+                <label>
+                <input type="checkbox" value="remember-me"> 记住登录状态
+                </label>
+                </div>
+                <button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
+                <div class="col-xs-6 col-xs-offset-9"><a href="/accounts/register/" target="_blank">立即注册</a></div>
+                <input type="hidden" name="next" value="{{ next }}" />
+            </form>
+        </div>
+        <script src="/static/js/ie-emulation-modes-warning.js"></script>
+    </body>
+</html>

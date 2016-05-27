@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Cover Template for Bootstrap</title>
+
+    <link href="/static/plugins/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="/static/css/cover.css" rel="stylesheet">
+
+    <script src="/static/js/ie-emulation-modes-warning.js"></script>
+  </head>
+
+  <body>
+
+    <div class="site-wrapper">
+
+      <div class="site-wrapper-inner">
+
+        <div class="cover-container">
+
+          <div class="masthead clearfix">
+            <div class="inner">
+              <h3 class="masthead-brand">老男孩IT教育</h3>
+              <nav>
+                <ul class="nav masthead-nav">
+                  <li class="active"><a href="#">Home</a></li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+
+          <div class="inner cover">
+            <h1 class="cover-heading" style="color: red">成绩查询</h1>
+            <form class="col-xs-12 col-sm-10 col-sm-offset-1" method="post">{% csrf_token %}
+                <input type="text" name="qq" placeholder="输入学员QQ号查询成绩... " class="input-lg form-control">
+            </form>
+            <p class="row">
+              <a href="/" class="btn">Back to Homepage</a>
+            </p>
+          </div>
+
+          <div class="container">
+            <div class="row" style="width: 1100px;background-color: #f2f2f2;color: #0f0f0f">
+                <h3 class="panel-title">成绩查询结果</h3>
+                <div class="panel-body text-left">
+                    <p><b>学号: </b>{{ user_info.stu_id }}</p>
+                    <p><b>姓名: </b>{{ user_info.name }}</p>
+                    <p><b>QQ: </b>{{ user_info.qq }}</p>
+                    <h4 class="text-center">< Python自动化开发 > 第12期</h4>
+                    <p>开课日期: {{ user_info.start_date }}</p>
+                    <p>结业日期: None</p>
+                    <p >成绩算法: ((100, &#39;A+&#39;), (90, &#39;A&#39;), (85, &#39;B+&#39;), (80, &#39;B&#39;), (70, &#39;B-&#39;), (60, &#39;C+&#39;), (50, &#39;C&#39;), (40, &#39;C-&#39;), (0, &#39;D&#39;), (-1, &#39;N/A&#39;), (-100, &#39;COPY&#39;), (-1000, &#39;FAIL&#39;))
+                    </p>
+                </div>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>总学分</th>
+                        <th>Day1</th>
+                        <th>Day2</th>
+                        <th>Day3</th>
+                        <th>Day4</th>
+                        <th>Day5</th>
+                        <th>Day6</th>
+                        <th>Day7</th>
+                        <th>Day8</th>
+                        <th>Day9</th>
+                        <th>Day10</th>
+                        <th>Day11</th>
+                        <th>Day12</th>
+                        <th>Day13</th>
+                        <th>Day14</th>
+                        <th>Day15</th>
+                        <th>Day16</th>
+                        <th>Day17</th>
+                        <th>Day18</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>1445</td>
+                        <td>A+</td>
+                        <td>A</td>
+                        <td>A</td>
+                        <td>A</td>
+                        <td>A</td>
+                        <td>A</td>
+                        <td>A</td>
+                        <td>A</td>
+                        <td>A</td>
+                        <td>A</td>
+                        <td>A</td>
+                        <td>A</td>
+                        <td>A</td>
+                        <td>A</td>
+                        <td>A</td>
+                        <td>B+</td>
+                        <td>N/A</td>
+                        <td>N/A</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <script src="/static/js/jquery-2.2.3.js"></script>
+    <script src="/static/plugins/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+  </body>
+</html>
+

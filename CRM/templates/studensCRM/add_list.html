@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block contener-body %}
+    <ol class="col-sm-7 col-sm-offset-2 col-md-10 col-md-offset-2 main breadcrumb" >
+      <li><a href="/">Home</a></li>
+      <li><a href="/student/admin/{{ table_name }}/show/">{{ table_name }}</a></li>
+      <li class="active">Data</li>
+    </ol>
+    <div class="col-sm-7 col-sm-offset-2 col-md-8 col-md-offset-2 main">
+        {% if error_message %}
+            <span class="bg-danger">{{ error_message }}</span>
+        {% else %}
+            <span class="bg-success">{{ message }}</span>
+        {% endif %}
+
+        <form id="add-data" method="post" action="">{% csrf_token %}
+            {% for item in model_form %}
+                <div class="form-group col-sm-7 col-sm-offset-2 col-md-5 col-md-offset-2">
+                    <label>{{ item.label_tag }}</label>
+                    {{ item }}<span class="bg-danger">{{ item.errors.as_text }}</span>
+                </div>
+
+            {% endfor %}
+            <div class="form-group col-sm-7 col-sm-offset-2 col-md-5 col-md-offset-2">
+                <button id="add-data-btn" type="submit" class="form-control bt bg-primary btn-success">添加</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}

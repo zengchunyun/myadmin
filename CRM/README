@@ -1,0 +1,18 @@
+本程序采用Django1.9.6
+
+
+启动前,先切换到项目目录下,执行以下三条命令,初始化项目数据库
+python3.5 manage.py makemigrations  studentCRM #生成改变对SQL语句
+python3.5 manage.py migrate  # 将数据写入数据库
+python3.5 manage.py createsuperuser  #创建admin后台管理员账号
+
+
+通过python3.5 manage.py runserver 0.0.0.0:8000启动服务
+
+打开浏览器
+访问http://127.0.0.1:8000
+默认用户 admin
+密码 P@ssw0rd
+
+首页展示的是后台数据库对应的表
+

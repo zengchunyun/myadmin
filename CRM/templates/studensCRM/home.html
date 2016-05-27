@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block contener-body %}
+    <div class="col-sm-10 col-sm-offset-2 col-md-10 col-md-offset-2 main">
+        <div class=".header-title">
+            <h1>{{ app_name|capfirst }}系统</h1>
+        </div>
+        <div class="row">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th colspan="3" class="text-left" style="background-color: #6196B3;color: #F2F2F2">{{ app_name|upper }}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for table  in tables_obj %}
+                        <tr>
+                            <td class="col-xs-7"><a href="/student/admin/{{ table.object_name }}/show/"><span class="glyphicon"></span> {{ table.verbose_name }}</a></td>
+                            <td class="col-xs-2 text-right"><a href="/student/admin/{{ table.object_name }}/add/"><span class="glyphicon glyphicon-plus" style="color: #5CB117"></span> Add</a></td>
+                            <td class="col-xs-3"><a href="/student/admin/{{ table.object_name }}/show/"><span class="glyphicon glyphicon-pencil" style="color: #E0A600"></span> Change</a></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+{% endblock %}

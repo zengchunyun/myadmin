@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="icon" href="/static/img/favicon.ico">
+        <title>注册</title>
+        <link href="/static/plugins/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet">
+        <link href="/static/css/signin.css" rel="stylesheet">
+    </head>
+
+    <body>
+
+        <div class="container">
+
+            <form class="form-signin" action="/accounts/register/" method="post">{% csrf_token %}
+                <h2 class="form-signin-heading">免费注册</h2>
+                <span>{{ register_failed }}</span>
+                <div class="form-group">
+                    <label for="id_username" class="sr-only">用户名</label>
+                    {{ register_obj.username }} <span class="bg-danger">{{ register_obj.username.errors.as_text }}</span>
+                </div>
+                <div class="form-group">
+                    <label for="id_email" class="sr-only">邮件地址</label>
+                    {{ register_obj.email }} <span class="bg-danger">{{ register_obj.email.errors.as_text }}</span>
+                </div>
+                <div class="form-group">
+                    <label for="id_phone" class="sr-only">手机号码</label>
+                    {{ register_obj.phone }} <span class="bg-danger">{{ register_obj.phone.errors.as_text }}</span>
+                </div>
+                <div class="form-group">
+                    <label for="id_password" class="sr-only">密码</label>
+                    {{ register_obj.password }} <span class="bg-danger">{{ register_obj.password.errors.as_text }}</span>
+                </div>
+                <div class="form-group">
+                    <label for="id_confirm_password" class="sr-only">确认密码</label>
+                    {{ register_obj.confirm_password }} <span class="bg-danger">{{ register_obj.confirm_password.errors.as_text }}</span>
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" value="remember-me"> 我已阅读并同意
+                    </label>
+                    <a class="active">《用户注册协议》</a>
+                </div>
+                <button class="btn btn-lg btn-primary btn-block" type="submit">立即注册</button>
+                <div class="col-xs-6 col-xs-offset-9"><a href="/accounts/login/" target="_blank">已有账号</a></div>
+            </form>
+        </div>
+        <script src="/static/js/ie-emulation-modes-warning.js"></script>
+    </body>
+</html>
